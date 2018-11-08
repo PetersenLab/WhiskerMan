@@ -1,1 +1,2 @@
 # WhiskerMan
+# Draft of WhiskerMan
