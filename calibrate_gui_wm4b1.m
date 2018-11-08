@@ -208,7 +208,7 @@ calib_video.offset = 8192;
 % set file position to start of first frame
 fseek(calib_video.fid,8192,-1);
 % specify first frame
-calib_video.startframe = calib_video.header.startframe+1
+calib_video.startframe = calib_video.header.startframe+1;
 
 % Load startframe:
 offset = calib_video.header.imagesize * (calib_video.startframe-1) + calib_video.offset;
