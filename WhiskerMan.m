@@ -142,7 +142,9 @@ handles.tracking2D=false;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 d = handles.dir.h;
-ff = dir([d '*.dat']);
+% 260919 rsp:
+% ff = dir([d '*.dat']);
+ff = [dir([d '*.dat']); dir([d '*.avi'])];
 clear d
 nr_files=size(ff,1);
 string_list=cell(nr_files+1,1);
@@ -154,7 +156,9 @@ set(handles.popupmenu_choose_hvideo,'String',string_list);
 clear nr_files string_list i
 
 d = handles.dir.v;
-ff = dir([d '*.dat']);
+% 260919 rsp:
+% ff = dir([d '*.dat']);
+ff = [dir([d '*.dat']); dir([d '*.avi'])];
 clear d
 nr_files=size(ff,1);
 string_list=cell(nr_files+1,1);
@@ -198,6 +202,7 @@ else
 end
 clear val string_list
 
+
 % get a FID and header information ('video' structure):
 handles.video.h = initialise_new_video(handles.fname.h,handles,handles.dir.h);
 % Set default ROIs:
@@ -207,6 +212,7 @@ handles.video.h.height.roi = handles.roi.h(4)-handles.roi.h(3)+1;
 handles.currentframe.h = handles.video.h.startframe;
 
 handles.mastervideo_selected = true;
+
 
 if handles.tracking2D
         % make the master frameidx table
@@ -343,6 +349,7 @@ else
     error('Select the horizontal view (master) video first')
 end
 
+
 guidata(hObject, handles);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -405,15 +412,24 @@ function video = initialise_new_video(fname,handles,dir)
 
 switch fname(end-2:end)
 %    % To syncrhonise the cameras, need "startframe", so need more header info
-%     case 'avi'
-%         video.type = 'avi';
+    case 'avi'
+        video.type = 'avi';
+        % 260919 rsp:
 %         video.vObj = mmreader([dir fname]);
-%         video.nframes = video.vObj.NumberOfFrames;
-%         video.width.raw = video.vObj.Width;
-%         video.height.raw = video.vObj.Height;
-%         % specify first frame and last frame:
-%         video.startframe = 1;
-%         video.stopframe = video.nframes;
+        video.vObj = VideoReader([dir fname]);
+        if isfield(video.vObj,'NumberOfFrames')
+            video.nframes = video.vObj.NumberOfFrames;
+        else
+            % work it out by hand ...
+            tmp = read(video.vObj,[1 inf]);
+            video.nframes = size(tmp,4);
+            clear tmp            
+        end
+        video.width.raw = video.vObj.Width;
+        video.height.raw = video.vObj.Height;
+        % specify first frame and last frame:
+        video.startframe = 1;
+        video.stopframe = video.nframes;
     case 'dat'
         video.type = 'dat';
         video.fid = fopen([dir fname],'r');
@@ -437,6 +453,8 @@ switch fname(end-2:end)
     otherwise
         error(fprintf('Unhandled video file type: %s\n',fname(end-2:end)))
 end
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1606,9 +1624,11 @@ clear w wmod fr r2 Emin EminH EminV EwV EwH
 function frame = load_frame(videopmtrs, framenum, roi)
 
 switch videopmtrs.type
-%     case 'avi'
+    case 'avi'
+        % 260919 rsp
 %         video = read(videopmtrs.vObj, framenum);
-%         frame = video(:,:,:,1);
+        % frame = video(:,:,:,1);
+        frame = read(videopmtrs.vObj, framenum);
     case 'dat'
         offset = videopmtrs.header.imagesize * (framenum-1) + videopmtrs.offset;
         fseek(videopmtrs.fid,offset,-1);
@@ -1623,6 +1643,13 @@ switch videopmtrs.type
         error('Unhandled video file type')
 end
 
+if isfield(videopmtrs,'transpose')
+    if videopmtrs.transpose
+        frame = permute(frame,[2 1 3]);
+        roi = roi([1 4 3 2]);
+    end
+end
+    
 frame = frame(roi(3):roi(4),roi(1):roi(2),:);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
