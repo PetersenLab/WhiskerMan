@@ -11,4 +11,5 @@
 4. Within Matlab, “cd” to the folder containing the horizontal view videos and enter ‘WhiskerMan’ on the command line.  A GUI resembling the following should appear.
 
 
+
 ![open](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/screenshots/Screenshot_open.png)
