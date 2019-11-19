@@ -47,9 +47,10 @@
 
 4. Press “Track whiskers” to start the tracking of the first frame. 
 
-5. Whiskerman will prompt you to initialise the control points of the whiskers highlighting the position of the cursor (see the paper for explanation). 
-To define the control points, select, using mouse clicks, the first, second and third control point of the Bezier curve in the horizontal view (starting with that closest to the snout).
+5. Whiskerman will prompt you to initialise the control points of the whiskers highlighting the position of the cursor (see the paper for explanation). To define the control points, select, using mouse clicks, the first, second and third control point of the Bezier curve in the horizontal view starting with that closest to the snout (see figure below).
 If parameters are set appropriately for your video, Whiskerman will track each frame until either the end of the video is reached or the algorithm’s quality control criteria fail in a given frame.
+
+![initialisation_2d](./screenshots/Screenshot_initialisation_2D.png)
 
 6. To halt tracking at any point, deselect “Continuous tracking”.
 
