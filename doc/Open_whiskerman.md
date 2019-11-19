@@ -102,7 +102,7 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 
 ![good tracking](./screenshots/Screenshot_good_tracking.png)
 
-8. Step to the first untracked frame and, press “Fit snakes”.  Alternatively, first select “Continuous tracking” in which case the tracking proceeds automatically until : a) “Continuous tracking” is deselected, b) the end of the video is reached or c) tracking fails for all selected whiskers.
+8. Step to the first untracked frame and, press “Track Whiskers”.  Alternatively, first select “Continuous tracking” in which case the tracking proceeds automatically until : a) “Continuous tracking” is deselected, b) the end of the video is reached or c) tracking fails for all selected whiskers.
 
 
  
