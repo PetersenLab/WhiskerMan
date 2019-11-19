@@ -3,11 +3,13 @@
 ## Table of contents
 - [Open Whiskerman](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#open-whiskerman)
 
-- [2D tracking](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#2d-whisker-tracking)
+- [2D Whisker Tracking](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#2d-whisker-tracking)
   
-  - [Single whisker]()
+  - [Single whisker](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#tracking-one-whisker)
   
-  - [Multiple whiskers]()
+  - [Multiple whiskers](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#tracking-multiple-whiskers)
+  
+ - [3D Whisker Tracking]
 
 ## Open WhiskerMan 
 
@@ -22,6 +24,7 @@
 
 
 ![open](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/screenshots/Screenshot_open.png)
+
 
 ## 2D Whisker Tracking
 
@@ -67,3 +70,30 @@ Whiskerman evaluates the quality of its solution for a given frame by computing 
 
 - If this energy is less than threshold, tracking stops.  The radio button “whisker selected” will be deselected.  
 To restart tracking, increase the value of the threshold, (re)select “whisker selected”, and then click “Track whiskers”. 
+
+
+## 3D Whisker Tracking
+
+**Requirements:**
+
+1. One or more pairs of videos, with each pair consisting of a horizontal view of the mouse and a vertical view
+
+2. Calibration videos
+
+### Instructions
+
+1. Select “3D tracking”
+
+2. Using the “Choose H video” menu, select the horizontal view video you wish to be track.
+3. Using the “Choose V video” menu, select the corresponding vertical view video. The first frame of each video should appear in the display. 
+
+3. Calibrate.  If videos with the current camera configuration have previously been tracked, calibration data will have been saved in the corresponding .tr4 file and can be loaded using the ‘Set calibration from .tr4’ menu.  Otherwise, use calibration videos, as detailed below.
+
+4. In the “identification of the whiskers” section of the GUI, define the whiskers to be tracked. To do this, for the first whisker that you want to track, specify its “current whisker label” (C1, C2 etc) and, if desired, the energy threshold (see help). To track an additional whisker, press “add whisker” and complete the information of the following whisker.  Repeat for as many whiskers as desired.
+
+5. To initiate tracking, press the “Track whiskers”  button.  Note that this button is disabled until calibration information is specified. 
+
+6. If this is the first frame of an untracked video, a cross-hair will appear, prompting you to initialise NBezier control points for the selected whiskers. Start by defining control points for the first whisker in the horizontal view.  Use the mouse to position the cross-hairs at each control point in turn (starting with that closest to the snout) and select using mouse clicks. Next, a guide line will appear in the vertical view that specifies the locus of points in this view consistent with the point selected in the horizontal view.  Define control points in the vertical view by using the mouse to move the cross-hairs to the desired location along the guide line and left-click.  Repeat for the other two control points.  If more than one whisker was defined, follow the same procedure for each in turn.  WhiskerMan will then use the specified points as initial conditions to fit Bezier curves to the whiskers in the current frame.  If the fitting is successful, WhiskerMan will then advance to the next frame. 
+
+![initialisation](/screenshots/Screenshot_initialisation.png)
+
