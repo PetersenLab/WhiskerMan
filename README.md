@@ -9,7 +9,7 @@ For details please see our preprint in [biorXiv](https://www.biorxiv.org/content
 
 ## Getting Started 
 
-See our documentation [here](/doc/Open_whiskerman.md)
+See our documentation [here](/doc/Documentation.md)
 
 ## Authors 
 
