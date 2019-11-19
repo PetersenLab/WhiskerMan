@@ -6,4 +6,17 @@
 
 For details please see our preprint in [biorXiv](https://www.biorxiv.org/content/10.1101/773697v1)
 
+
+## Getting Started 
+
 See our documentation [here](/doc/Open_whiskerman.md)
+
+## Authors 
+
+- [Rasmus Petersen](https://github.com/RSPetersen)
+- [Andrea Colins Rodriguez](https://github.com/AndreaColinsR)
+
+
+## License
+
+This project is licensed under the GPL-3.0 License - see the LICENSE.md file for details
