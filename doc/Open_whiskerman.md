@@ -1,15 +1,15 @@
 # Whi[s]kerMan Documentation
 
 ## Table of contents
-- [Open Whiskerman](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#open-whiskerman)
+- [Open Whiskerman](./Open_whiskerman.md#open-whiskerman)
 
-- [2D Whisker Tracking](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#2d-whisker-tracking)
+- [2D Whisker Tracking](./Open_whiskerman.md#2d-whisker-tracking)
   
-  - [Single whisker](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#tracking-one-whisker)
+  - [Single whisker](./Open_whiskerman.md#tracking-one-whisker)
   
-  - [Multiple whiskers](https://github.com/PetersenLab/WhiskerMan/blob/master/doc/Open_whiskerman.md#tracking-multiple-whiskers)
+  - [Multiple whiskers](./Open_whiskerman.md#tracking-multiple-whiskers)
   
- - [3D Whisker Tracking]
+ - [3D Whisker Tracking](./Open_whiskerman.md#3d-whisker-tracking)
 
 ## Open WhiskerMan 
 
@@ -93,7 +93,7 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 
 5. To initiate tracking, press the “Track whiskers”  button.  Note that this button is disabled until calibration information is specified. 
 
-6. If this is the first frame of an untracked video, a cross-hair will appear, prompting you to initialise NBezier control points for the selected whiskers. Start by defining control points for the first whisker in the horizontal view.  Use the mouse to position the cross-hairs at each control point in turn (starting with that closest to the snout) and select using mouse clicks. Next, a guide line will appear in the vertical view that specifies the locus of points in this view consistent with the point selected in the horizontal view.  Define control points in the vertical view by using the mouse to move the cross-hairs to the desired location along the guide line and left-click.  Repeat for the other two control points.  If more than one whisker was defined, follow the same procedure for each in turn.  WhiskerMan will then use the specified points as initial conditions to fit Bezier curves to the whiskers in the current frame.  If the fitting is successful, WhiskerMan will then advance to the next frame. 
+6. If this is the first frame of an untracked video, a cross-hair will appear, prompting you to initialise NBezier control points for the selected whiskers. Start by defining control points for the first whisker in the horizontal view (See figure below).  Use the mouse to position the cross-hairs at each control point in turn (starting with that closest to the snout) and select using mouse clicks. Next, a guide line will appear in the vertical view that specifies the locus of points in this view consistent with the point selected in the horizontal view.  Define control points in the vertical view by using the mouse to move the cross-hairs to the desired location along the guide line and left-click.  Repeat for the other two control points.  If more than one whisker was defined, follow the same procedure for each in turn.  WhiskerMan will then use the specified points as initial conditions to fit Bezier curves to the whiskers in the current frame.  If the fitting is successful, WhiskerMan will then advance to the next frame. 
 
 ![initialisation](./screenshots/Screenshot_initialisation.png)
 
