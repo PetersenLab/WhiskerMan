@@ -119,34 +119,115 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 
 ## Buttons and options in the GUI
  
+### Selection of the type of tracking 
+
+1.	**2D tracking**: Prepare the GUI to track only using the horizontal view
+2.	**3D tracking**: Prepare the GUI to track using the horizontal and vertical view 
+
+### Selection of videos and calibration 
+
+1.	**Choose H video**: Menu that contains all the .dat files in the folder corresponding to the horizontal view
+2.	**Choose V video**: Menu that contains all the .dat files in the folder corresponding to the vertical view
+3.	**Initialisation file**: Menu that contains all the .tr4 files in the folder corresponding to the horizontal view. Selecting a .tr4 file from this menu will produce samples of the Bezier curves for all the whiskers saved in the .tr4 file. The curves will appear on the screen when the button “Fit snakes” is pressed for the first time. (optional)
+4.	**Calibrate**: Open the GUI to calibrate the horizontal and vertical view
+5.	**Set calibration from .tr4**: Menu that contains all the .tr4 files in the folder corresponding to the horizontal view. Alternatively to “Calibrate”, selecting a .tr4 file from this menu will import the information that was used to calibrate the corresponding video and calibrate the current video using the same information (matrix and vector).
+
+### Identification of whisker to be tracked
+
+1.	**Number whiskers**: Shows the number of whiskers currently defined
+2.	**Current whisker index**: Shows the number of the whisker that is currently being edited
+3.	**Current whisker label**: Shows the label (eg “C2”) of the whisker that is currently being edited. This label can be edited from the default name “xx” to the name of the whisker.
+4.	**Current whisker energy threshold**: Shows the energy threshold for the current whisker. This number can be edited from the default value 180 to higher (useful for short/light whiskers) or lower (useful for long/dark whiskers) values. If the energy of the fit to the current whisker is higher than the threshold, the whisker will be deselected and will not be tracked in the subsequent frames.
+5.	**Whisker selected**: This option indicates if the current whisker is selected for tracking. Pressing this button will select/deselect the current whisker. If the whisker is not selected, the whisker will not be tracked or showed in the following frames, but will conserve the information saved so far. 
+6.	**Select all whiskers**: Pressing this button will select all the whiskers currently defined for tracking.
+7.	**Add whisker**: Pressing this button will add a new whisker and will complete the fields “Current whisker label” and “Current whisker energy threshold” with the default values.
+8.	**Reset current whisker**: Pressing this button will delete tracking data for the current whisker (information in the fields “Current whisker label” and “Current whisker energy threshold” is preserved).
+9.	**Delete current whisker**: Pressing this button will delete all tracking data and information related to the current whisker.
+
+ ### Tracking parameters
+
+1.	**Plot contour**: Pressing this button will display the snout contour in both views for tracked frames. (optional)
+2.	**Frame interval**: Tracking data are displayed every “frame interval” frames. The default “1” is to show every frame but if this slows down processing, it can be useful to use a higher value.  Note that this parameter affects only display – all frames are always tracked.
+3.	**Snout sigma**: Snout contour smoothness parameter. Higher values result in smoother contours. Default “12”
+4.	**Sigma1 prior**: Whisker contour temporal smoothness parameter. Higher values result in smoother time series of the whisker angles and curvatures.
+5.	**Sigma2 prior**: Whisker contour shape parameter.  Shows the current value for the factor of the distance between the middle control point and the two end control points. Higher values of Sigma_2 result in the middle Bezier control point of each whisker contour being closer to the half-way point along the whisker contour.  This is important for regularising the solution for the middle control point when the whisker contour is near straight.
+6.	**Tracking direction**: Shows the current tracking direction ( “fwd” or “bkwd”). 
+7.	**Snout outliers**: Shows the number of points that will be cut from the ends of the snout of contour.  (Note: this is useful when the water port is clearly visible in the horizontal view or both sides of the snout contour are visible)
+8.	**Replicate last frame**: Replicate the Bezier curve from the previous frame for the selected whiskers. (Note: this option is useful when sudden  and short moves happens, e.g. slips-sticks) 
+
+ ### Output/ check tracking and video
+
+1.	**Plot Angles and Curvatures**: Plot results for the four basic variables, that characterise the location and shape of the base of the whisker contours: Azimuth angle, Elevation angle, Horizontal curvature and Vertical curvature
+2.	**Export Angles and Curvatures**: Save the results for the four basic variables as a .mat file named as “Kinematics_horizontal_video_name.mat”. In this file, the variables (Azimuth, Horizontal_curvature, Vertical_curvature and Elevation) have the size [frames, number of whiskers]. Frames that are not tracked present all variables equal to zero. 
+
+#### Video playback
+This section allows playing the video with the Bezier curves of all the tracked whiskers overlapped.
+
+3.	**Start**: Play the video starting from the current frame
+4.	**Stop**: Stop the video
+5.	**Reverse/forward**: Control the direction in which the video is played (“forward” (default) or “reverse”).
+6.	**Inter-frame pause**: During video playback, pause between frames of the video (in seconds). Default is “0.1 s”.
+7.	**Frame interval**: During video playback, display one out of every ‘frame interval’ frames.  Default is “1” (show every frame).
+8.	**Go to start**: Go to first frame of the video (in both horizontal and vertical views). 
+
+ 
+### Track current video
+
+1.	**Track Whiskers**: If all the selected whiskers were tracked in the previous frame, pressing “Fit snakes” will fit Bezier curves to the selected whiskers in the current frame and will then show the next frame to be tracked. If any of the whiskers were not tracked in the previous frame, pressing “Fit snakes” will prompt the user to initialise those whiskers.  To initialise the whiskers, select, using mouse clicks, the first, second and third control point of the Bezier curve in the horizontal view (starting with that closest to the snout). Then, select (in the same order) control points in the vertical view, following the guides showed on the screen.
+
+2.	**Continuous tracking**: If this option is selected and then “Fit snakes” is pressed, tracking proceeds automatically from frame to frame until: a) “Continuous tracking” is deselected, b) the end of the video is reached or c) tracking fails for all selected whiskers.
+
+### Track batches of videos
+
+This section allows tracking multiple videos consecutively. To use this section at least one .tr4 file with the whiskers tracked must be available. 
+
+**Considerations:**
+
+the .tr4 used as init file act as a template for the shape and position of the whisker. Then, ideally the whisker(s) tracked in the init file should be representative of both, the shape and the position of the whiskers. 
+
+1. Chose between between 2d and 3d tracking. 
+
+2.	Choose init file: Menu that contains all .tr4 files in the folder corresponding to the horizontal view. Selecting a .tr4 file loads samples of the Bezier curves for all whiskers from that file.  WhiskerMan will then attempt to initialise the whiskers in the current video using those data, without manual initialisation.
+  
+ 3.	Choose batch file: Menu that contains all the .bat files in the folder corresponding to the horizontal view.  A .bat (batch) file is a text file containing a list of .dat files (horizontal and vertical videos) to be tracked (one per line).
+  
+ 4.	Start batch file: Start tracking the videos in the selected .bat file batch. If tracking fails at some point for a given video, tracking data for that video will saved in the corresponding .tr4 file and tracking of the next video in the .bat file will commence.
+  
+5.	If a valid batch and init files were selected, whiskerman will attempt to autoinitialise the video. 
+
+6.	For each whisker a message will appear showing the energy of the best solution found and a “…good” message indicating if the energy of the best solution is lower than 1.1 threshold of the init file and the whisker will be tracked. Otherwise, the message “…bad” will appear.
+
+7.	After completing the tracking of the video, whiskerman will automatically continue with the next video on the batch file. 
+
+
  
 ## Keyboard commands 
 
 ### Navigation though the video
 
-1. Right arrow= advance 1 frame forward
-2. Shift+ Right arrow= advance 10 frames forward
-3. Ctrl+ Right arrow= advance 100 frames forward
-4. Left arrow= advance 1 frame backward
-5. Shift+ Left arrow= advance 10 frames forward
-6. Ctrl+ Left arrow= advance 100 frames backward
+1. **Right arrow**= advance 1 frame forward
+2. **Shift+ Right arrow**= advance 10 frames forward
+3. **Ctrl+ Right arrow**= advance 100 frames forward
+4. **Left arrow**= advance 1 frame backward
+5. **Shift+ Left arrow**= advance 10 frames forward
+6. **Ctrl+ Left arrow**= advance 100 frames backward
 
 ### Manual editing of Bezier control points
  
-1.	w= change current whisker. This will display the number of the current frame, the energy value and the length of the Bezier curve for the current whisker at the top of the GUI.
-2.	Down arrow= start manual editing mode for current whisker (selected with w)
-3.	Up arrow= start manual editing mode for current whisker (selected with w)
+1.	**w**= change current whisker. This will display the number of the current frame, the energy value and the length of the Bezier curve for the current whisker at the top of the GUI.
+2.	**Down arrow**= start manual editing mode for current whisker (selected with w)
+3.	**Up arrow**= start manual editing mode for current whisker (selected with w)
 
 Once in the manual editing mode:
 
-4.	Down arrow= Change the currently selected control point
-5.	Up arrow= Change the currently selected control point
+4.	**Down arrow**= Change the currently selected control point
+5.	**Up arrow**= Change the currently selected control point
 
 Once the control point is selected:
 
-6.	Alt+ left arrow= move the selected control point in the negative x direction (x axis of the horizontal view)
-7.	Alt+ right arrow= move the selected control point in the positive x direction
-8.	Alt+ up arrow= move the selected control point in the positive y direction (y axis of the horizontal view)
-9.	Alt+ down arrow= move the selected control point in the negative y direction
-10.	Alt+ Page Up= move the selected control point in the positive z direction (y axis of the vertical view).
-11.	Alt+ Page Down= move the selected control point in the negative z direction
+6.	**Alt+ left arrow**= move the selected control point in the negative x direction (x axis of the horizontal view)
+7.	**Alt+ right arrow**= move the selected control point in the positive x direction
+8.	**Alt+ up arrow**= move the selected control point in the positive y direction (y axis of the horizontal view)
+9.	**Alt+ down arrow**= move the selected control point in the negative y direction
+10.	**Alt+ Page Up**= move the selected control point in the positive z direction (y axis of the vertical view).
+11.	**Alt+ Page Down**= move the selected control point in the negative z direction
