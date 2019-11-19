@@ -11,13 +11,13 @@
   
  - [3D Whisker Tracking](./Open_whiskerman.md#3d-whisker-tracking)
  
- - [3D Calibration](./Open_whiskerman.md#3D Calibration)
+ - [3D Calibration](./Open_whiskerman.md#3d-calibration)
  
  - [Others](./Open_whiskerman.md#Others)
  
- - [Buttons and options in the GUI](./Open_whiskerman.md#Buttons and options in the GUI)
+ - [Buttons and options in the GUI](./Open_whiskerman.md#buttons-and-options-in-the-gui)
  
- - [Keyboard commands](./Open_whiskerman.md#Keyboard commands)
+ - [Keyboard commands](./Open_whiskerman.md#keyboard-commands)
 
 ## Open WhiskerMan 
 
