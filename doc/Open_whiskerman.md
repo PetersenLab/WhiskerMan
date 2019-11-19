@@ -85,6 +85,7 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 1. Select “3D tracking”
 
 2. Using the “Choose H video” menu, select the horizontal view video you wish to be track.
+
 3. Using the “Choose V video” menu, select the corresponding vertical view video. The first frame of each video should appear in the display. 
 
 3. Calibrate.  If videos with the current camera configuration have previously been tracked, calibration data will have been saved in the corresponding .tr4 file and can be loaded using the ‘Set calibration from .tr4’ menu.  Otherwise, use calibration videos, as detailed below.
@@ -96,4 +97,13 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 6. If this is the first frame of an untracked video, a cross-hair will appear, prompting you to initialise NBezier control points for the selected whiskers. Start by defining control points for the first whisker in the horizontal view (See figure below).  Use the mouse to position the cross-hairs at each control point in turn (starting with that closest to the snout) and select using mouse clicks. Next, a guide line will appear in the vertical view that specifies the locus of points in this view consistent with the point selected in the horizontal view.  Define control points in the vertical view by using the mouse to move the cross-hairs to the desired location along the guide line and left-click.  Repeat for the other two control points.  If more than one whisker was defined, follow the same procedure for each in turn.  WhiskerMan will then use the specified points as initial conditions to fit Bezier curves to the whiskers in the current frame.  If the fitting is successful, WhiskerMan will then advance to the next frame. 
 
 ![initialisation](./screenshots/Screenshot_initialisation.png)
+
+7. To check the solution, use the left arrow on the keyboard to step back to the previous frame.  The tracking solutions are shown as coloured curves and the control points as dots (See figure Below).  If tracking has succeeded, these curves will match the shape of the target whiskers.  If not, try re-initialising or vary tracking parameters (see help).
+
+![good tracking](./screenshots/Screenshot_good_tracking.png)
+
+8. Step to the first untracked frame and, press “Fit snakes”.  Alternatively, first select “Continuous tracking” in which case the tracking proceeds automatically until : a) “Continuous tracking” is deselected, b) the end of the video is reached or c) tracking fails for all selected whiskers.
+
+
+ 
 
