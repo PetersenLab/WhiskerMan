@@ -116,17 +116,25 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 
 1. To calibrate a video, open whikerman, select the horizontal and the vertical videos and press “Calibrate”. This will open the calibration GUI (see figure below).
 
+![cal1](./screenshots/Screenshot_cal1.png)
+
 2. Select the horizontal and vertical view of the calibration videos from the “Choose calibration video h” and “Choose calibration video v” menus respectively.
 
 3. Press “Set ROIs for texture calibrate” to select the ROIs. This will open a new window on the screen (see figure below).
+
+![cal1](./screenshots/Screenshot_cal2.png)
 
 4. To select the ROI of the horizontal view, press “Set ROI H”. The GUI will highlight the cursor position. Select the up left corner of the ROI and then select the down right corner. The selected ROI will be highlighted in red (see figure above).
 
 5. To select the ROI of the vertical view, press “Set ROI V”. The GUI will highlight the cursor position. Select the up left corner of the ROI and then select the down right corner. The selected ROI will be highlighted in blue (see figure below). Press “Close”.
 
+![cal1](./screenshots/Screenshot_cal3.png)
+
 6. The ROIs must cover the regions where the pointy ends are during the whole video, but avoid sections in which other elements in the frame can be considered as pointy ends.
 
 7. Select the “display” option and press “Run ‘texture calibrate’”. This will open a new figure showing the two views of the calibration video with the ROIs superimposed. In addition, the figure will display the identification of the algorithm for the pointy ends (a red dot and a blue dot) and the position of the pole in the horizontal view. The red and blue dot should match the pointy end positions at all times, if not, the ROIs should be selected again and press “Run ‘texture calibrate’”. An example for a correct and an incorrect calibration process are shown below.
+
+![cal1](./screenshots/Screenshot_cal4.png)
 
 8. At the end of the video, a new figure will be displayed showing the trajectories of the pointy ends in 3D. If the trajectory does not match the real position of the pointy ends, the calibration process should start again, selecting new ROIs.
 
