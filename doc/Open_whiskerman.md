@@ -240,30 +240,36 @@ the .tr4 used as init file act as a template for the shape and position of the w
 ## Keyboard commands 
 
 ### Navigation though the video
-
-1. **Right arrow**= advance 1 frame forward
-2. **Shift+ Right arrow**= advance 10 frames forward
-3. **Ctrl+ Right arrow**= advance 100 frames forward
-4. **Left arrow**= advance 1 frame backward
-5. **Shift+ Left arrow**= advance 10 frames forward
-6. **Ctrl+ Left arrow**= advance 100 frames backward
+| Command | Description |
+| --- | --- |
+| **Right arrow** | advance 1 frame forward |
+| **Shift+ Right arrow** | advance 10 frames forward |
+| **Ctrl+ Right arrow** | advance 100 frames forward |
+| **Left arrow** | advance 1 frame backward |
+| **Shift+ Left arrow** | advance 10 frames forward |
+| **Ctrl+ Left arrow** | advance 100 frames backward |
 
 ### Manual editing of Bezier control points
- 
-1.	**w**= change current whisker. This will display the number of the current frame, the energy value and the length of the Bezier curve for the current whisker at the top of the GUI.
-2.	**Down arrow**= start manual editing mode for current whisker (selected with w)
-3.	**Up arrow**= start manual editing mode for current whisker (selected with w)
+ | Command | Description |
+| --- | --- |
+|	**w** | change current whisker. This will display the number of the current frame, the energy value and the length of the Bezier curve for the current whisker at the top of the GUI. |
+|	**Down arrow** | start manual editing mode for current whisker (selected with w) |
+|	**Up arrow** | start manual editing mode for current whisker (selected with w) |
 
 Once in the manual editing mode:
 
-4.	**Down arrow**= Change the currently selected control point
-5.	**Up arrow**= Change the currently selected control point
+| Command | Description |
+| --- | --- |
+|	**Down arrow** | Change the currently selected control point |
+|	**Up arrow** | Change the currently selected control point |
 
 Once the control point is selected:
 
-6.	**Alt+ left arrow**= move the selected control point in the negative x direction (x axis of the horizontal view)
-7.	**Alt+ right arrow**= move the selected control point in the positive x direction
-8.	**Alt+ up arrow**= move the selected control point in the positive y direction (y axis of the horizontal view)
-9.	**Alt+ down arrow**= move the selected control point in the negative y direction
-10.	**Alt+ Page Up**= move the selected control point in the positive z direction (y axis of the vertical view).
-11.	**Alt+ Page Down**= move the selected control point in the negative z direction
+| Command | Description |
+| --- | --- |
+|	**Alt+ left arrow** | move the selected control point in the negative x direction (x axis of the horizontal view) |
+|	**Alt+ right arrow** | move the selected control point in the positive x direction |
+|	**Alt+ up arrow** | move the selected control point in the positive y direction (y axis of the horizontal view) |
+|	**Alt+ down arrow** | move the selected control point in the negative y direction |
+|	**Alt+ Page Up** | move the selected control point in the positive z direction (y axis of the vertical view) |
+|	**Alt+ Page Down** | move the selected control point in the negative z direction |
