@@ -116,6 +116,14 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
  
 ## Others
 
+- To edit manually the tracking for a given frame: Select the whisker that will be edited using the key “w”, press the “up arrow”  or the “down arrow” key to select the control point to be edited. 
+
+- Move the selected control point using “Alt” + the arrow keys, PgUp or PgDn. Details can be found on section “Keyboard commands”.
+
+- To navigate through the video: Use the right (forward) and left (backward) keys in addition to the modifiers “Shift” (move 10 frames) and “Ctrl” (move 100 frames).  E.g. “Ctrl+right arrow” will show advance 100 frames forward.
+
+- Press “Plot Angles and Curvatures” to see the kinematic variables for the tracked frames: Azimuth angle, Elevation angle, Horizontal curvature and Vertical curvature.
+
 
 ## Buttons and options in the GUI
  
@@ -128,11 +136,11 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 
 1.	**Choose H video**: Menu that contains all the .dat files in the folder corresponding to the horizontal view
 2.	**Choose V video**: Menu that contains all the .dat files in the folder corresponding to the vertical view
-3.	**Initialisation file**: Menu that contains all the .tr4 files in the folder corresponding to the horizontal view. Selecting a .tr4 file from this menu will produce samples of the Bezier curves for all the whiskers saved in the .tr4 file. The curves will appear on the screen when the button “Fit snakes” is pressed for the first time. (optional)
+3.	**Initialisation file**: Menu that contains all the .tr4 files in the folder corresponding to the horizontal view. Selecting a .tr4 file from this menu will produce samples of the Bezier curves for all the whiskers saved in the .tr4 file. The curves will appear on the screen when the button “Track Whiskers” is pressed for the first time. (optional)
 4.	**Calibrate**: Open the GUI to calibrate the horizontal and vertical view
 5.	**Set calibration from .tr4**: Menu that contains all the .tr4 files in the folder corresponding to the horizontal view. Alternatively to “Calibrate”, selecting a .tr4 file from this menu will import the information that was used to calibrate the corresponding video and calibrate the current video using the same information (matrix and vector).
 
-### Identification of whisker to be tracked
+### Identification of whiskers to be tracked
 
 1.	**Number whiskers**: Shows the number of whiskers currently defined
 2.	**Current whisker index**: Shows the number of the whisker that is currently being edited
@@ -173,9 +181,9 @@ This section allows playing the video with the Bezier curves of all the tracked 
  
 ### Track current video
 
-1.	**Track Whiskers**: If all the selected whiskers were tracked in the previous frame, pressing “Fit snakes” will fit Bezier curves to the selected whiskers in the current frame and will then show the next frame to be tracked. If any of the whiskers were not tracked in the previous frame, pressing “Fit snakes” will prompt the user to initialise those whiskers.  To initialise the whiskers, select, using mouse clicks, the first, second and third control point of the Bezier curve in the horizontal view (starting with that closest to the snout). Then, select (in the same order) control points in the vertical view, following the guides showed on the screen.
+1.	**Track Whiskers**: If all the selected whiskers were tracked in the previous frame, pressing “Track Whiskers” will fit Bezier curves to the selected whiskers in the current frame and will then show the next frame to be tracked. If any of the whiskers were not tracked in the previous frame, pressing “Track Whiskers” will prompt the user to initialise those whiskers.  To initialise the whiskers, select, using mouse clicks, the first, second and third control point of the Bezier curve in the horizontal view (starting with that closest to the snout). Then, select (in the same order) control points in the vertical view, following the guides showed on the screen.
 
-2.	**Continuous tracking**: If this option is selected and then “Fit snakes” is pressed, tracking proceeds automatically from frame to frame until: a) “Continuous tracking” is deselected, b) the end of the video is reached or c) tracking fails for all selected whiskers.
+2.	**Continuous tracking**: If this option is selected and then “Track Whiskers” is pressed, tracking proceeds automatically from frame to frame until: a) “Continuous tracking” is deselected, b) the end of the video is reached or c) tracking fails for all selected whiskers.
 
 ### Track batches of videos
 
