@@ -10,6 +10,14 @@
   - [Multiple whiskers](./Open_whiskerman.md#tracking-multiple-whiskers)
   
  - [3D Whisker Tracking](./Open_whiskerman.md#3d-whisker-tracking)
+ 
+ -[3D Calibration](./Open_whiskerman.md#3D Calibration)
+ 
+ -[Others](./Open_whiskerman.md#Others)
+ 
+ -[Buttons and options in the GUI](./Open_whiskerman.md#Buttons and options in the GUI)
+ 
+ -[Keyboard commands](./Open_whiskerman.md#Keyboard commands)
 
 ## Open WhiskerMan 
 
@@ -104,6 +112,15 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 
 8. Step to the first untracked frame and, press “Track Whiskers”.  Alternatively, first select “Continuous tracking” in which case the tracking proceeds automatically until : a) “Continuous tracking” is deselected, b) the end of the video is reached or c) tracking fails for all selected whiskers.
 
+## 3D Calibration
+ 
+## Others
+
+
+## Buttons and options in the GUI
+ 
+ 
+## Keyboard commands 
 
  
 
