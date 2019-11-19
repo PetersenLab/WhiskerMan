@@ -113,6 +113,26 @@ To restart tracking, increase the value of the threshold, (re)select “whisker 
 8. Step to the first untracked frame and, press “Track Whiskers”.  Alternatively, first select “Continuous tracking” in which case the tracking proceeds automatically until : a) “Continuous tracking” is deselected, b) the end of the video is reached or c) tracking fails for all selected whiskers.
 
 ## 3D Calibration
+
+1. To calibrate a video, open whikerman, select the horizontal and the vertical videos and press “Calibrate”. This will open the calibration GUI (see figure below).
+
+2. Select the horizontal and vertical view of the calibration videos from the “Choose calibration video h” and “Choose calibration video v” menus respectively.
+
+3. Press “Set ROIs for texture calibrate” to select the ROIs. This will open a new window on the screen (see figure below).
+
+4. To select the ROI of the horizontal view, press “Set ROI H”. The GUI will highlight the cursor position. Select the up left corner of the ROI and then select the down right corner. The selected ROI will be highlighted in red (see figure above).
+
+5. To select the ROI of the vertical view, press “Set ROI V”. The GUI will highlight the cursor position. Select the up left corner of the ROI and then select the down right corner. The selected ROI will be highlighted in blue (see figure below). Press “Close”.
+
+6. The ROIs must cover the regions where the pointy ends are during the whole video, but avoid sections in which other elements in the frame can be considered as pointy ends.
+
+7. Select the “display” option and press “Run ‘texture calibrate’”. This will open a new figure showing the two views of the calibration video with the ROIs superimposed. In addition, the figure will display the identification of the algorithm for the pointy ends (a red dot and a blue dot) and the position of the pole in the horizontal view. The red and blue dot should match the pointy end positions at all times, if not, the ROIs should be selected again and press “Run ‘texture calibrate’”. An example for a correct and an incorrect calibration process are shown below.
+
+8. At the end of the video, a new figure will be displayed showing the trajectories of the pointy ends in 3D. If the trajectory does not match the real position of the pointy ends, the calibration process should start again, selecting new ROIs.
+
+9. If the trajectories match the pointy ends position, press “Derive calibration transform”.
+
+10. To check the calibration process, press “Check correspondence”. A new figure will be displayed showing a frame of the calibration videos. The user will be prompted to select one point in the horizontal view (e.g one of the pointy ends) and will show the correspondent position in the vertical view. If the correspondence is correct press “save calib file and close”, otherwise go back to step 3.
  
 ## Others
 
