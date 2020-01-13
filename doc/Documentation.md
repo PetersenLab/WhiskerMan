@@ -1,23 +1,23 @@
 # Whi[s]kerMan Documentation
 
 ## Table of contents
-- [Open Whiskerman](./Open_whiskerman.md#open-whiskerman)
+- [Open Whiskerman](./Documentation.md#open-whiskerman)
 
-- [2D Whisker Tracking](./Open_whiskerman.md#2d-whisker-tracking)
+- [2D Whisker Tracking](./Documentation.md#2d-whisker-tracking)
   
-  - [Single whisker](./Open_whiskerman.md#tracking-one-whisker)
+  - [Single whisker](./Documentation.md#tracking-one-whisker)
   
-  - [Multiple whiskers](./Open_whiskerman.md#tracking-multiple-whiskers)
+  - [Multiple whiskers](./Documentation.md#tracking-multiple-whiskers)
   
- - [3D Whisker Tracking](./Open_whiskerman.md#3d-whisker-tracking)
+ - [3D Whisker Tracking](./Documentation.md#3d-whisker-tracking)
  
- - [3D Calibration](./Open_whiskerman.md#3d-calibration)
+ - [3D Calibration](./Documentation.md#3d-calibration)
  
- - [Others](./Open_whiskerman.md#Others)
+ - [Others](./Documentation.md#Others)
  
- - [Buttons and options in the GUI](./Open_whiskerman.md#buttons-and-options-in-the-gui)
+ - [Buttons and options in the GUI](./Documentation.md#buttons-and-options-in-the-gui)
  
- - [Keyboard commands](./Open_whiskerman.md#keyboard-commands)
+ - [Keyboard commands](./Documentation.md#keyboard-commands)
 
 ## Open WhiskerMan 
 
