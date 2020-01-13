@@ -27,7 +27,7 @@ function varargout = WhiskerMan(varargin)
 
 % Edit the above text to modify the response to help WhikerMan2l
 
-% Last Modified by GUIDE v2.5 08-Nov-2018 11:31:37
+% Last Modified by GUIDE v2.5 22-Oct-2019 13:08:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,7 +73,7 @@ set(handles.edit_sigma2_prior,'String',handles.trpmtrs.sigma2_prior);
 
 
 handles.default_energy_threshold_subtract_image_mean = -20;
-handles.default_energy_threshold_do_not_subtract_image_mean = 80;
+handles.default_energy_threshold_do_not_subtract_image_mean = 180;
 
 handles.frame_interval = 1;
 set(handles.edit_frame_interval,'String',handles.frame_interval)
@@ -3039,6 +3039,7 @@ framenum.v = handles.framenums_vfromh(frameidx);
 haxes.v = handles.viewv; 
 end
 
+                   
 if change_frame
     % plot new image in the baseframe.  if it exists, superimpose tracking solution.
     %     display_frame(frameidx)
@@ -3049,7 +3050,7 @@ if change_frame
     end
     if isfield(handles.whisker,'tracked')
         if handles.whisker(handles.current_whisker).tracked(frameidx) && isfield(handles.whisker,'Emin')
-            titles.h = [titles.h sprintf('(%.1f)',handles.whisker(handles.current_whisker).Emin(frameidx))];
+            titles.h = [titles.h sprintf(' Emin %.1f ',handles.whisker(handles.current_whisker).Emin(frameidx))];
         end
     end
     handles.frame = load_and_plot_frames(handles.video,framenum,handles.roi,handles.meanframe,titles,haxes);  
@@ -3217,6 +3218,22 @@ if change_whisker
         b3 = bezierval(r3,t);
         r2 = projection2(r3,handles.calib);
         b2 = projection2(b3,handles.calib);
+        
+        
+        %arc lenght
+        if ~handles.tracking2D
+        for k=1:numel(t)-1
+            dist(k)=pdist(b3(:,k:k+1)');
+        end
+
+        else
+            for k=1:numel(t)-1
+            dist(k)=pdist(b2(:,k:k+1)');
+            end
+        end
+        dist_total=sum(dist);
+        
+        
         fp2 = projection2(handles.whisker(w).fp3_all(frameidx,:)',handles.calib);
         axes(handles.viewh)
         plot(b2(1,:,1),b2(2,:,1),handles.lines{w},r2(1,:,1),r2(2,:,1),handles.points{w},...
@@ -3231,7 +3248,9 @@ if change_whisker
     titlestring = ['Whisker: ' handles.whisker(w).label ' Frame= ' num2str(frameidx)];
     if isfield(handles.whisker,'tracked')
         if handles.whisker(w).tracked(frameidx) && isfield(handles.whisker,'Emin')
-            titlestring = ['Whisker: ' handles.whisker(w).label ' Frame= ' num2str(frameidx) sprintf(' Emin= (%.1f)',handles.whisker(w).Emin(frameidx))];
+                
+            
+            titlestring = ['Whisker: ' handles.whisker(w).label ' Frame= ' num2str(frameidx) sprintf(' Emin= %.1f',handles.whisker(w).Emin(frameidx)) sprintf(' Length %.1f ',dist_total)];
         end
 
     end
@@ -3864,7 +3883,7 @@ for w = 1:handles.Nwhiskers
         plot(frames(idx),azimuth(idx),handles.colours{wmod}), ylabel('Azimuth angle [\circ]'),legend(handles.legend)
         title('Azimuth: 90\circ is normal to ant-post axis; >90 \circ for whisker protracted')
         h1(2) = subplot(spr,1,2); hold on
-        plot(frames(idx),curv_hc(3,idx),handles.colours{wmod}), ylabel('\kappa Horizontal [1/pixel]'),xlabel('Frame number')
+        plot(frames(idx),curv_hc(3,idx),handles.colours{wmod}), ylabel('\kappa [1/pixel]'),xlabel('Frame number')
         linkaxes(h1,'x')
 
 
@@ -6180,3 +6199,49 @@ set(handles.popupmenu_choose_auto_initialise_file,'String',string_list);
 clear nr_files string_list i
 
 guidata(hObject, handles);
+
+
+% --- Executes on button press in pushbutton_export_kinematics.
+function pushbutton_export_kinematics_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_export_kinematics (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+frames = [1:handles.video.h.nframes]';
+
+Azimuth=zeros(handles.video.h.nframes,handles.Nwhiskers);
+Horizontal_curvature=zeros(handles.video.h.nframes,handles.Nwhiskers);
+if ~handles.tracking2D
+    Elevation=zeros(handles.video.h.nframes,handles.Nwhiskers);
+    Vertical_curvature=zeros(handles.video.h.nframes,handles.Nwhiskers);
+end
+for w = 1:handles.Nwhiskers
+    idx = find(handles.whisker(w).tracked);
+    theta = zeros(3,length(handles.whisker(w).tracked));
+    curv3 = zeros(1,length(handles.whisker(w).tracked));
+    curv_hc = zeros(2,length(handles.whisker(w).tracked));
+    for i = 1:length(idx)
+        fr = idx(i);
+        r = squeeze(handles.whisker(w).r3all(fr,:,:));
+        theta(:,fr) = base_angle3(r,0);
+        curv_hc(1,fr) = curvature(r([2 3],:),0);
+        curv_hc(2,fr) = curvature(r([1 3],:),0);
+        curv_hc(3,fr) = curvature(r([1 2],:),0);
+        curv3(fr) = curvature3(r,0);
+    end
+    clear i fr
+   
+    Azimuth(idx,w)=theta(3,idx);
+    Horizontal_curvature(idx,w)=curv_hc(3,idx);
+    if ~handles.tracking2D
+      Elevation(idx,w)=theta(1,idx);
+      Vertical_curvature(idx,w)=curv_hc(1,idx);  
+    end
+        
+end
+
+if handles.tracking2D
+save(['Kinematics_' handles.fname.h(1:end-4) '.mat'],'frames','Azimuth','Horizontal_curvature')
+else
+ save(['Kinematics_' handles.fname.h(1:end-4) '.mat'],'frames','Azimuth','Horizontal_curvature','Elevation','Vertical_curvature')   
+end
+clear w
