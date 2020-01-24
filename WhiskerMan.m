@@ -137,8 +137,8 @@ handles.tracking2D=false;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % specify folders in next 2 lines:
-        handles.dir.h =[pwd '\'];
-        handles.dir.v =[pwd '\vertical_view\'];
+        handles.dir.h = fullfile(pwd, filesep);
+        handles.dir.v = fullfile(pwd, 'vertical_view', filesep);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 d = handles.dir.h;
