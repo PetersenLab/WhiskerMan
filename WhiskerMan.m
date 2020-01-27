@@ -1149,7 +1149,6 @@ function [handles,fnoutput] = fit_snakes(handles)
                 %         set(handles.currentframe_display,'string',num2str(handles.currentframe.h))
                 if doplot
                     pause(.01)
-                    cla(handles.viewh,'reset')
                     titles.h = num2str(handles.currentframe.h);
                     haxes.h = handles.viewh;
                     
