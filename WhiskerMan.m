@@ -871,7 +871,6 @@ function [handles,fnoutput] = fit_snakes(handles)
                     if doplot==doplot_full
                         r2 = projection2(r3,handles.calib);
                         r2old = projection2(r3old,handles.calib);
-                        axes(handles.viewh)
                         % plot solution from previous frame, if there is one:
                         plot(r2old(1,:,1),r2old(2,:,1),'b+'),
                         % plot initial conditions:
