@@ -7,9 +7,12 @@
 For details please see our preprint in [biorXiv](https://www.biorxiv.org/content/10.1101/773697v1)
 
 
+
 ## Getting Started 
 
 See our documentation [here](/doc/Documentation.md)
+
+See our tutorial [here](http://doi.org/10.6084/m9.figshare.9758894)
 
 ## Authors 
 
