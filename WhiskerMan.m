@@ -1148,12 +1148,12 @@ while (track)
 %         set(handles.currentframe_display,'string',num2str(handles.currentframe.h))
         if doplot
             pause(.01)
-            cla(handles.viewh,'reset')
+            %cla(handles.viewh,'reset')
             titles.h = num2str(handles.currentframe.h); 
             haxes.h = handles.viewh; 
             
             if ~handles.tracking2D
-            cla(handles.viewv,'reset')
+            %cla(handles.viewv,'reset')
             titles.v = num2str(handles.currentframe.v);
             haxes.v = handles.viewv; 
             end
