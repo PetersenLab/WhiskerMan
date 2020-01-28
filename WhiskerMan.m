@@ -2701,10 +2701,14 @@ function [fp3, fidx, p, sfp] = find_follicle_poly_wm4a(r3,dt,folliclemask)
     end
     
     dist = zeros(length(sneg),size(folliclemask,2));
+    x_vec = polyval(p(1, :), sneg(:)) .';
+    y_vec = polyval(p(2, :), sneg(:)) .';
     for i = 1:length(sneg)
         for j = 1:size(folliclemask,2)
             x = polyval(p(1,:),sneg(i));
             y = polyval(p(2,:),sneg(i));
+            assert(isequal(x, x_vec(i)))
+            assert(isequal(y, y_vec(i)))
             dist(i,j) = sum(([x;y]-folliclemask(:,j)).^2,1);    %distance in the H projection
         end
     end
