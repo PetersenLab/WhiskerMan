@@ -4,7 +4,7 @@
 
 [Whi[s]kerMan: Pronounced with silent “s”, as in the classic film, “Wicker Man”]
 
-For details please see our preprint in [biorXiv](https://www.biorxiv.org/content/10.1101/773697v1)
+For details please see our paper [here](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007402)
 
 
 
